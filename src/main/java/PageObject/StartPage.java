@@ -40,7 +40,7 @@ public class StartPage {
     }
 
     // получить текст ответа на первый вопрос
-    public String getFirstAnswerText() {
+    public String getFirstAnswerText (){
         return driver.findElement(firstAnswerText).getText();
     }
 
@@ -133,5 +133,41 @@ public class StartPage {
     // получить текст ответа на восьмой вопрос
     public String getEighthAnswerText() {
         return driver.findElement(eighthAnswerText).getText();
+    }
+
+    public String getTextAnswer(int numberQuestion){
+        if(numberQuestion == 1){
+            driver.findElement(firstQuestion).click();
+            return driver.findElement(firstAnswerText).getText();
+        }
+        if (numberQuestion == 2){
+            driver.findElement(secondQuestion).click();
+            return driver.findElement(secondAnswerText).getText();
+        }
+        if (numberQuestion == 3){
+            driver.findElement(thirdQuestion).click();
+            return driver.findElement(thirdAnswerText).getText();
+        }
+        if (numberQuestion == 4){
+            driver.findElement(fourthQuestion).click();
+            return driver.findElement(fourthAnswerText).getText();
+        }
+        if (numberQuestion == 5){
+            driver.findElement(fifthQuestion).click();
+            return driver.findElement(fifthAnswerText).getText();
+        }
+        if (numberQuestion == 6){
+            driver.findElement(sixthQuestion).click();
+            return driver.findElement(sixthAnswerText).getText();
+        }
+        if (numberQuestion == 7){
+            driver.findElement(seventhQuestion).click();
+            return driver.findElement(seventhAnswerText).getText();
+        }
+        if (numberQuestion == 8){
+            driver.findElement(eighthQuestion).click();
+            return driver.findElement(eighthAnswerText).getText();
+        }
+        return "Вопрос не найден";
     }
 }
