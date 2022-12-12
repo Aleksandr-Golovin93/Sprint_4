@@ -34,6 +34,15 @@ public class StartPage {
     private By firstQuestion = By.id("accordion__heading-0"); // 1 вопрос в выпадающем списке
     private By firstAnswerText = By.xpath(".//div[@id='accordion__panel-0']/p"); // 1 ответ в выпадающем списке
 
+
+    public void clickButtonOfOrder(int button) {
+        if (button == 1) {
+            driver.findElement(TopButtonOfOrder).click();
+        } else {
+            driver.findElement(BottomButtonOfOrder).click();
+        }
+    }
+
     // открыть первый вопрос
     public void clickFirstQuestion() {
         driver.findElement(firstQuestion).click();
