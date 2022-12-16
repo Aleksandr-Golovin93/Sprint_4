@@ -1,6 +1,7 @@
 package PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class UserFormOrder {
@@ -32,11 +33,13 @@ public class UserFormOrder {
         driver.findElement(address).sendKeys(userAddress);
     }
 
-    private By listOfMetro  = By.xpath(".//input[@class='select-search__input']"); // выподающтй список станций метро
+    private By listOfMetro  = By.xpath(".//input[@placeholder='* Станция метро']"); // выподающтй список станций метро
 
-    // нажатие кнопки выбора метро (выпадает список станций)
-    public void onClickListOfMetro() {
+    // выбор метро
+    public void onClickListOfMetro(String metro) {
         driver.findElement(listOfMetro).click();
+        driver.findElement(listOfMetro).sendKeys(metro);
+        driver.findElement(listOfMetro).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
     }
 
     private By chooseStation  = By.xpath(".//button[@value='3']"); // кнопка станции Преображенская площадь
@@ -58,5 +61,13 @@ public class UserFormOrder {
     // нажать кнопку Далее
     public void onDone() {
         driver.findElement(done).click();
+    }
+
+    public void onePageForm(String userName,String userSurname,String userAddress,String metro,String userPoneNumber) {
+        setName (userName);
+        setSurname (userSurname);
+        setAddress (userAddress);
+        onClickListOfMetro(metro);
+        setPhone (userPoneNumber);
     }
 }

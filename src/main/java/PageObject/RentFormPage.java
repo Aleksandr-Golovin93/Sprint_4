@@ -1,6 +1,7 @@
 package PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class RentFormPage {
@@ -11,36 +12,50 @@ public class RentFormPage {
         this.driver = driver;
     }
 
-    // поле (*Когда привезти самокат)
-    private By date = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
+    // поле дата
+    private By date = By.xpath(".//div[@class='react-datepicker__input-container']/input");
 
-    // выпадает календарь
-    public void onClickDate() {
-        driver.findElement(date).click();
+    //поле "Срок аренды"
+    private By period=By.className("Dropdown-placeholder");
+    // поле "Срок аренды" - значение "сутки"
+    private By period_1day=By.xpath(".//*[@class='Dropdown-option'][1]");
+    // поле "Срок аренды" - значение "двое суток"
+    private By period_2days=By.xpath(".//*[@class='Dropdown-option'][2]");
+    // поле "Срок аренды" - значение "трое суток"
+    private By period_3days=By.xpath(".//*[@class='Dropdown-option'][3]");
+    // поле "Срок аренды" - значение "четверо суток"
+    private By period_4days=By.xpath(".//*[@class='Dropdown-option'][4]");
+    // поле "Срок аренды" - значение "пятеро суток"
+    private By period_5days=By.xpath(".//*[@class='Dropdown-option'][5]");
+    // поле "Срок аренды" - значение "шестеро суток"
+    private By period_6days=By.xpath(".//*[@class='Dropdown-option'][6]");
+    // поле "Срок аренды" - значение "семеро суток"
+    private By period_7days=By.xpath(".//*[@class='Dropdown-option'][7]");
+
+    // ввод даты
+    public void inputDate(String newDate){
+        driver.findElement(date).sendKeys(newDate);
+        driver.findElement(date).sendKeys(Keys.ENTER);
     }
 
-    // кнопка 22 числа в календаре
-    private By calendar = By.cssSelector(".react-datepicker__day--022");
-
-    // нажатие кнопки 22 числа
-    public void onClickCalendar() {
-        driver.findElement(calendar).click();
-    }
-
-    // поле (*срок аренды)
-    private By listPeriod = By.cssSelector(".Dropdown-placeholder");
-
-    // выпадает список дней
-    public void onClickListPeriod() {
-        driver.findElement(listPeriod).click();
-    }
-
-    // 5 суток
-    private By period = By.xpath(".//div[text()='пятеро суток']");
-
-    // выбрать 5 суток
-    public void onClickPeriod() {
+    // выбор длительности аренды
+    public void inputPeriod(int days){
         driver.findElement(period).click();
+        if (days==1) {
+            driver.findElement(period_1day).click();
+        } else if (days==2) {
+            driver.findElement(period_2days).click();
+        } else if (days==3) {
+            driver.findElement(period_3days).click();
+        } else if (days==4) {
+            driver.findElement(period_4days).click();
+        } else if (days==5) {
+            driver.findElement(period_5days).click();
+        } else if (days==6) {
+            driver.findElement(period_6days).click();
+        } else if (days==7) {
+            driver.findElement(period_7days).click();
+        }
     }
 
     // конпка заказать
@@ -56,5 +71,12 @@ public class RentFormPage {
     //подтвердить заказ (нажать кнопку да)
     public void onDoneModal() {
         driver.findElement(doneModal).click();
+    }
+
+    public void secondPageForm(String newDate,int days){
+        inputDate(newDate);
+        inputPeriod(days);
+        onDone();
+        onDoneModal();
     }
 }

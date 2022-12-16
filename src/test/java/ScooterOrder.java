@@ -24,48 +24,28 @@ public class ScooterOrder {
 
     private WebDriver driver;
     private int numberButton;
-    private String name;
-    private String surname;
-    private String address;
+    private String userName;
+    private String userSurname;
+    private String userAddress;
     private String metro;
-    private String phone;
-    private String yearMonth;
+    private String userPoneNumber;
+    private String newDate;
     private int day;
 
-    private String comment;
-    private StartPage objectStartPage;
-    private UserFormOrder objectUserOrderForm;
-    private RentFormPage objectRentForm;
-    private AcceptModalPage objectAcceptModal;
-
     public ScooterOrder(int numberButton,
-                     String name, String surname, String address, String metro, String phone,
-                     String yearMonth, int day) {
+                     String userName, String userSurname, String userAddress, String metro, String userPoneNumber,
+                     String newDate, int day) {
         this.numberButton = numberButton;
 
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
+        this.userName = userName;
+        this.userSurname = userSurname;
+        this.userAddress = userAddress;
         this.metro = metro;
-        this.phone = phone;
+        this.userPoneNumber = userPoneNumber;
 
-        this.yearMonth = yearMonth;
+        this.newDate = newDate;
         this.day = day;
     }
-
-    public void onePageOrder(int numberButton,
-                             String name,String surname,String address, String metro, String phone) {
-        objectStartPage.clickCookieButton();
-        objectStartPage.clickButtonOfOrder(numberButton);
-        objectUserOrderForm.setName(name);
-        objectUserOrderForm.setSurname(surname);
-        objectUserOrderForm.setAddress(address);
-        objectUserOrderForm.onClickListOfMetro();
-        objectUserOrderForm.onClickStation();
-        objectUserOrderForm.setPhone(phone);
-        objectUserOrderForm.onDone();
-    }
-
 
     private String expectedTextSuccessfulOrder = "Заказ оформлен";
 
@@ -74,10 +54,7 @@ public class ScooterOrder {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
-        StartPage objectStartPage = new StartPage(driver);
-        UserFormOrder objectUserOrderForm = new UserFormOrder(driver);
-        RentFormPage objectRentForm = new RentFormPage(driver);
-        AcceptModalPage objectAcceptModal = new AcceptModalPage(driver);
+
     }
 
     @Parameters
@@ -85,10 +62,10 @@ public class ScooterOrder {
         return new Object[][]{
                 {1,
                         "Александр", "Головин", "Королёва 2", "Преображенская площадь", "+79379808499",
-                        "2022-12", 5},
+                        "13.12.2022", 5},
                 {2,
                         "Губка", "Боб", "Дыбенко 3", "Преображенская площадь", "+79370900990",
-                        "2022-12", 5}
+                        "17.12.2022", 3}
         };
     }
 
@@ -100,37 +77,19 @@ public class ScooterOrder {
 
         /* Для работы с Google Chrome */
         driver = new ChromeDriver();
-        onePageOrder(numberButton,name,surname,address, metro,phone);
-        objectRentForm.onClickDate();
-        objectRentForm.onClickCalendar();
-        objectRentForm.onClickListPeriod();
-        objectRentForm.onClickPeriod();
-        objectRentForm.onDone();
-        objectRentForm.onDoneModal();
-        String actualTextSuccessfulOrder = objectAcceptModal.getTitleAcceptModel();
-        MatcherAssert.assertThat(actualTextSuccessfulOrder, startsWith(expectedTextSuccessfulOrder));
-    }
+        StartPage objectStartPage = new StartPage(driver);
+        objectStartPage.clickCookieButton(); // подтвердил куки
+        objectStartPage.clickButtonOfOrder(numberButton); // выбрал кнопку
 
-    @Test
-    public void secondOrder() {
-        /* Для работы с Mozilla Firefox */
-//        FirefoxOptions options = new FirefoxOptions();
-//        driver = new FirefoxDriver(options);
+        UserFormOrder objectUserOrderForm = new UserFormOrder(driver);
+        //заполнение полей
+        objectUserOrderForm.onePageForm(userName,userSurname,userAddress, metro,userPoneNumber);
 
-        /* Для работы с Google Chrome */
+        RentFormPage objectRentForm = new RentFormPage(driver);
+        //заполнение полей
+        objectRentForm.secondPageForm(newDate,day);
 
-        objectStartPage.clickBottomButtonOfOrder();
-        onePageOrder(numberButton,name,surname,address, metro,phone);
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#root > div > div > div.Home_ThirdPart__LSTEE > div.Home_RoadMap__2tal_ > div.Home_FinishButton__1_cWm > button")));
-        WebElement element = driver.findElement(By.cssSelector("#root > div > div > div.Home_ThirdPart__LSTEE > div.Home_RoadMap__2tal_ > div.Home_FinishButton__1_cWm > button"));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-        objectRentForm.onClickDate();
-        objectRentForm.onClickCalendar();
-        objectRentForm.onClickListPeriod();
-        objectRentForm.onClickPeriod();
-        objectRentForm.onDone();
-        objectRentForm.onDoneModal();
+        AcceptModalPage objectAcceptModal = new AcceptModalPage(driver);
         String actualTextSuccessfulOrder = objectAcceptModal.getTitleAcceptModel();
         MatcherAssert.assertThat(actualTextSuccessfulOrder, startsWith(expectedTextSuccessfulOrder));
     }
