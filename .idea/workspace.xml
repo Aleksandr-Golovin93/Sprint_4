@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3359339-2afa-462f-adfc-1777cd538c8d" name="Changes" comment="">
+    <list default="true" id="d3359339-2afa-462f-adfc-1777cd538c8d" name="Changes" comment="Commit3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PageObject/StartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PageObject/StartPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PageObject/UserFormOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PageObject/UserFormOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ScooterOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ScooterOrder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,16 +40,26 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.ScooterOrder.firstOrder">
+  <component name="RunManager" selected="JUnit.QuestionsList.QuestionText">
     <configuration name="QuestionsList.QuestionText" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Sprint__4" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="QuestionsList" />
       <option name="METHOD_NAME" value="QuestionText" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScooterOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sprint__4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ScooterOrder" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,9 +86,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ScooterOrder.firstOrder" />
-        <item itemvalue="JUnit.ScooterOrder.secondOrder" />
         <item itemvalue="JUnit.QuestionsList.QuestionText" />
+        <item itemvalue="JUnit.ScooterOrder.firstOrder" />
+        <item itemvalue="JUnit.ScooterOrder" />
+        <item itemvalue="JUnit.ScooterOrder.secondOrder" />
       </list>
     </recent_temporary>
   </component>
@@ -98,11 +109,26 @@
       <option name="project" value="LOCAL" />
       <updated>1670457911365</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit2">
+      <created>1670837564550</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670837564550</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commit3">
+      <created>1671180953818</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671180953818</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit2" />
+    <MESSAGE value="Commit3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit3" />
   </component>
 </project>

@@ -69,5 +69,6 @@ public class UserFormOrder {
         setAddress (userAddress);
         onClickListOfMetro(metro);
         setPhone (userPoneNumber);
+        onDone();
     }
 }

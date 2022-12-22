@@ -23,14 +23,14 @@ import static org.hamcrest.CoreMatchers.startsWith;
 public class ScooterOrder {
 
     private WebDriver driver;
-    private int numberButton;
-    private String userName;
-    private String userSurname;
-    private String userAddress;
-    private String metro;
-    private String userPoneNumber;
-    private String newDate;
-    private int day;
+    private final int numberButton;
+    private final String userName;
+    private final String userSurname;
+    private final String userAddress;
+    private final String metro;
+    private final String userPoneNumber;
+    private final String newDate;
+    private final int day;
 
     public ScooterOrder(int numberButton,
                      String userName, String userSurname, String userAddress, String metro, String userPoneNumber,
@@ -49,14 +49,6 @@ public class ScooterOrder {
 
     private String expectedTextSuccessfulOrder = "Заказ оформлен";
 
-    @Before
-    public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-
-    }
-
     @Parameters
     public static Object[][] getTestData() {
         return new Object[][]{
@@ -71,12 +63,9 @@ public class ScooterOrder {
 
     @Test
     public void firstOrder() {
-        /* Для работы с Mozilla Firefox */
-//        FirefoxOptions options = new FirefoxOptions();
-//        driver = new FirefoxDriver(options);
-
-        /* Для работы с Google Chrome */
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.get("https://qa-scooter.praktikum-services.ru/");
         StartPage objectStartPage = new StartPage(driver);
         objectStartPage.clickCookieButton(); // подтвердил куки
         objectStartPage.clickButtonOfOrder(numberButton); // выбрал кнопку
@@ -96,6 +85,7 @@ public class ScooterOrder {
 
     @After
     public void tearDown() {
+
         driver.quit();
     }
 }
